@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { BIZ } from "../data";
+import { abrirCharola } from "../lib/abrir";
 
 const LINKS = [
   { href: "#pan", es: "El Pan" },
@@ -57,10 +58,22 @@ export default function Nav() {
               {l.es}
             </a>
           ))}
-          <a
-            href={`tel:${BIZ.phoneHref}`}
+          {/* Ordering is a button that opens the flow. Calling is its own
+              separate action, labelled as a phone call. */}
+          <button
+            onClick={() => abrirCharola("charola")}
             className="rounded-full px-4 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] transition-transform hover:scale-[1.03]"
             style={{ background: "var(--honey)", color: "var(--crust-3)" }}
+          >
+            Pedir
+          </button>
+          <a
+            href={`tel:${BIZ.phoneHref}`}
+            className="rounded-full border px-4 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] transition-colors"
+            style={{
+              borderColor: solid ? "var(--rule-2)" : "rgba(251,246,236,0.4)",
+              color: solid ? "var(--crust-2)" : "var(--cream)",
+            }}
           >
             Llamar
           </a>
@@ -112,12 +125,22 @@ export default function Nav() {
                 {l.es}
               </a>
             ))}
-            <a
-              href={`tel:${BIZ.phoneHref}`}
-              className="mt-5 block rounded-full px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em]"
+            <button
+              onClick={() => {
+                setOpen(false);
+                abrirCharola("charola");
+              }}
+              className="mt-5 block w-full rounded-full px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em]"
               style={{ background: "var(--honey)", color: "var(--crust-3)" }}
             >
-              {BIZ.phoneDisplay}
+              Pedir para recoger
+            </button>
+            <a
+              href={`tel:${BIZ.phoneHref}`}
+              className="mt-2.5 block rounded-full border px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em]"
+              style={{ borderColor: "rgba(251,246,236,0.4)", color: "var(--cream)" }}
+            >
+              Llamar {BIZ.phoneDisplay}
             </a>
           </div>
         </div>

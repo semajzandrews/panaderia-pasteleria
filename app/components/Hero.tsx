@@ -2,6 +2,7 @@
 
 import { BIZ, IMG } from "../data";
 import { WheatMark } from "./Nav";
+import { abrirCharola } from "../lib/abrir";
 
 export default function Hero() {
   return (
@@ -71,19 +72,28 @@ export default function Hero() {
           className="mt-9 flex flex-wrap items-center gap-3.5"
           style={{ animation: "soft-rise 1.05s ease-out 0.2s both" }}
         >
-          <a
-            href="#carta"
+          {/* Both of these open the flow. The phone stands on its own below,
+              labelled as a phone call, so nothing that says "order" dials. */}
+          <button
+            onClick={() => abrirCharola("charola")}
             className="rounded-full px-7 py-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.14em] transition-transform hover:scale-[1.03]"
             style={{ background: "var(--honey)", color: "var(--crust-3)" }}
           >
-            Ver la carta
-          </a>
-          <a
-            href={`tel:${BIZ.phoneHref}`}
+            Llenar mi charola
+          </button>
+          <button
+            onClick={() => abrirCharola("encargo")}
             className="rounded-full border px-7 py-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.14em] transition-colors hover:bg-[rgba(251,246,236,0.08)]"
             style={{ borderColor: "rgba(251,246,236,0.4)", color: "var(--cream)" }}
           >
             Encargar un pastel
+          </button>
+          <a
+            href="#carta"
+            className="text-[0.82rem] uppercase tracking-[0.14em] underline-offset-4 hover:underline"
+            style={{ color: "rgba(251,246,236,0.8)" }}
+          >
+            Ver la carta
           </a>
           <span
             className="flex items-center gap-2 text-[0.82rem]"

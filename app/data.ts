@@ -37,47 +37,8 @@ export const IMG = {
   cakeStraw: "/img/p18604369.jpg", // strawberry cream cake closeup
 };
 
-// Menu — generic, real panaderia categories. No invented prices.
-export const MENU = [
-  {
-    es: "Pan Dulce",
-    en: "Sweet bread, baked fresh daily",
-    items: [
-      { n: "Conchas", d: "vainilla y chocolate" },
-      { n: "Orejas", d: "hojaldre crujiente" },
-      { n: "Cuernos", d: "suaves, recien horneados" },
-      { n: "Empanadas", d: "de calabaza y crema" },
-      { n: "Mantecadas", d: "esponjosas, de la manana" },
-    ],
-  },
-  {
-    es: "Pan Salado",
-    en: "Savory bread and rolls",
-    items: [
-      { n: "Bolillo", d: "para tortas y el cafe" },
-      { n: "Telera", d: "fresca cada dia" },
-      { n: "Birote", d: "corteza dorada" },
-    ],
-  },
-  {
-    es: "Pasteleria",
-    en: "Cakes for every occasion",
-    items: [
-      { n: "Tres Leches", d: "el clasico, humedo" },
-      { n: "Pasteles de fiesta", d: "por encargo, decorados" },
-      { n: "Gelatinas", d: "de temporada" },
-    ],
-  },
-  {
-    es: "Cafe",
-    en: "Coffee and more",
-    items: [
-      { n: "Cafe de olla", d: "canela y piloncillo" },
-      { n: "Cafe con leche", d: "para acompanar el pan" },
-      { n: "Champurrado", d: "espeso, de temporada" },
-    ],
-  },
-];
+// The carta now lives in app/lib/menu.ts, which both the printed carta and
+// the order flow read, so the shelf and the order cannot drift apart.
 
 // Ticker — the daily bake, in the kitchen's own language.
 export const TICKER = [
