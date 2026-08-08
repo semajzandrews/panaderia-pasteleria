@@ -5,6 +5,7 @@ import { BIZ, IMG } from "../data";
 import Reveal from "./Reveal";
 import { abrirCharola } from "../lib/abrir";
 import { WheatMark } from "./Nav";
+import LlamarOEscribir from "./LlamarOEscribir";
 
 export default function Visita() {
   /** read after mount only, so the server and the client agree on the day */
@@ -46,13 +47,10 @@ export default function Visita() {
               >
                 Pedir para recoger
               </button>
-              <a
-                href={`tel:${BIZ.phoneHref}`}
-                className="rounded-full border px-6 py-3.5 text-[0.78rem] font-semibold uppercase tracking-[0.14em]"
-                style={{ borderColor: "var(--rule-2)", color: "var(--crust-2)" }}
-              >
-                Llamar {BIZ.phoneDisplay}
-              </a>
+              {/* Aqui sobra espacio, asi que las dos puertas quedan a la vista.
+                  El mensaje llega escrito para el pedido de fiesta, que es lo
+                  que nadie quiere dictar por telefono. */}
+              <LlamarOEscribir variante="fila" recado="evento" />
               <a
                 href={BIZ.mapsUri}
                 target="_blank"

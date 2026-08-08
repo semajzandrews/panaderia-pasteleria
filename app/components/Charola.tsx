@@ -40,14 +40,15 @@ import {
   byId,
   closeLabel,
   dateFromKey,
-  formatPhone,
-  isPhoneComplete,
+  formatAsYouType,
+  isCompletePhone,
   openDays,
   prettyDay,
   slotsFor,
 } from "../lib/menu";
 import type { Puerta } from "../lib/abrir";
 import { WheatMark } from "./Nav";
+import LlamarOEscribir from "./LlamarOEscribir";
 
 type Etapa = "puerta" | "llenar" | "pastel" | "cuando" | "quien" | "listo";
 
@@ -132,7 +133,7 @@ export default function Charola() {
   const listoCharola = piezas > 0 || tazas > 0;
   const listoPastel = pastel !== "" && personas !== "";
   const listoCuando = dia !== "" && hora !== "";
-  const listoQuien = nombre.trim().length > 1 && isPhoneComplete(tel);
+  const listoQuien = nombre.trim().length > 1 && isCompletePhone(tel);
 
   function poner(id: string) {
     setCharola((c) => [...c, id]);
@@ -562,7 +563,7 @@ export default function Charola() {
               <input
                 value={tel}
                 inputMode="tel"
-                onChange={(e) => setTel(formatPhone(e.target.value))}
+                onChange={(e) => setTel(formatAsYouType(e.target.value))}
                 placeholder="(973) 555-0123"
                 className="tabnum w-full rounded-[12px] px-4 py-3 font-display text-[1.2rem] outline-none"
                 style={{ background: "var(--cream)", border: "1px solid var(--rule-2)" }}
@@ -670,13 +671,10 @@ export default function Charola() {
                 </p>
 
                 <div className="mt-6 flex flex-wrap gap-2.5">
-                  <a
-                    href={`tel:${BIZ.phoneHref}`}
-                    className="rounded-full px-5 py-3 text-[0.78rem] font-semibold uppercase tracking-[0.14em]"
-                    style={{ background: "var(--honey)", color: "var(--crust-3)" }}
-                  >
-                    Llamar {BIZ.phoneDisplay}
-                  </a>
+                  {/* Ya con el encargo hecho, la duda tipica es del pastel:
+                      sabor, tamano y que va escrito. Se puede llamar o mandar
+                      ese recado ya escrito. */}
+                  <LlamarOEscribir tono="miel" recado="pastel" etiqueta="Llamar o escribir" />
                   <button
                     onClick={() => {
                       limpiar();

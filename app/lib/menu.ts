@@ -177,14 +177,9 @@ export function prettyDay(k: string, now: Date): string {
   return `el ${DIAS[d.getDay()].toLowerCase()} ${d.getDate()}`;
 }
 
-/* ── Phone, shared behaviour across every build ───────────────────────────
-   Formats progressively to (xxx) xxx-xxxx, hard-caps at 10 digits, drops a
-   leading country 1 so a pasted "+1 973 555 0123" still lands.            */
-export function formatPhone(input: string): string {
-  const d = input.replace(/\D/g, "").replace(/^1(?=\d{10})/, "").slice(0, 10);
-  if (d.length === 0) return "";
-  if (d.length <= 3) return `(${d}`;
-  if (d.length <= 6) return `(${d.slice(0, 3)}) ${d.slice(3)}`;
-  return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
-}
-export const isPhoneComplete = (v: string) => v.replace(/\D/g, "").length === 10;
+/* ── Telefono ─────────────────────────────────────────────────────────────
+   Ya no vive aqui. La mascara y la validacion salen de app/lib/phone.ts, el
+   mismo modulo que arma el numero visible y los enlaces tel:/sms:, para que
+   lo que lee el cliente sea exactamente lo que teclea de regreso. Esta copia
+   duplicada era justo la desviacion que la doctrina existe para evitar.     */
+export { formatAsYouType, isCompletePhone, formatPhone } from "./phone";

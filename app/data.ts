@@ -1,13 +1,29 @@
 // Verified recon facts — Panaderia y Pasteleria El Trigal
 // Source: Google Places (sweep-07050.json), 06-16-2026. NO existing website (confirmed).
+import { formatPhone, e164 } from "./lib/phone";
+
+const PHONE_DIGITS = "3478429351";
+
+/* Los dos mensajes que se pueden mandar por texto. Una panaderia vive de dos
+   encargos que nadie quiere explicar por telefono con fila en el mostrador:
+   el pastel a la medida (sabor, tamano, que va escrito) y el pedido grande
+   para una fiesta. Cada boton de texto llega con su recado ya escrito. */
+export const TEXTO_PASTEL =
+  "Hola El Trigal, quiero encargar un pastel. Sabor, tamano, que va escrito y para cuando lo necesito: ";
+export const TEXTO_EVENTO =
+  "Hola El Trigal, quiero pan y pastel para una fiesta. Somos mas o menos ___ personas y es el ___. ";
+
 export const BIZ = {
   name: "Panaderia y Pasteleria El Trigal",
   short: "El Trigal",
   category: "Panaderia mexicana",
   address: "23 S Essex Ave",
   cityLine: "City of Orange, NJ 07050",
-  phoneDisplay: "(347) 842-9351",
-  phoneHref: "+13478429351",
+  // DOCTRINA DEL TELEFONO — un solo constante de puros digitos. Lo que se ve y
+  // lo que marca salen de app/lib/phone.ts, asi nunca se separan.
+  phoneDigits: PHONE_DIGITS,
+  phoneDisplay: formatPhone(PHONE_DIGITS), // (347) 842-9351
+  phoneHref: e164(PHONE_DIGITS), // +13478429351
   rating: 4.9,
   reviews: 11,
   mapsUri: "https://maps.google.com/?cid=1680703119358804383",
